@@ -75,14 +75,24 @@ public class MainMenu {
         System.out.println("Добавленные товар:");
         calculator.getProductList();
         double cheque = calculator.peopleCheque();
-        String message = "Сумма на человека %.2f %s";
+        System.out.printf(String.format("Сумма на человека %.2f %s", cheque, getRubCase(cheque)));
+
+    }
+    //Передаёт правильный падеж слова "рубль" в зависимости от суммы
+    private String getRubCase(double cheque){
         if (((int) cheque % 100) > 10 && ((int) cheque % 100 < 15)){
-            System.out.printf((message) + "%n", cheque, "рублей");
+            return "рублей";
         } else {
             switch ((int) cheque % 10) {
-                case (1) -> System.out.printf((message) + "%n", cheque, "рубль");
-                case (2), (3), (4) -> System.out.printf((message) + "%n", cheque, "рубля");
-                default -> System.out.printf((message) + "%n", cheque, "рублей");
+                case (1) -> {
+                    return "рубль";
+                }
+                case (2), (3), (4) -> {
+                    return  "рубля";
+                }
+                default -> {
+                    return  "рублей";
+                }
             }
         }
     }
