@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class MainMenu {
-
-//    private final Scanner scanner = new Scanner(System.in);
     private Calculator calculator;
 
     //Стартовое меню
@@ -78,12 +76,14 @@ public class MainMenu {
         calculator.getProductList();
         double cheque = calculator.peopleCheque();
         String message = "Сумма на человека %.2f %s";
-        if (cheque < 1.00 || cheque >= 4.00){
+        if (((int) cheque % 100) > 10 && ((int) cheque % 100 < 15)){
             System.out.printf((message) + "%n", cheque, "рублей");
-        } else if (cheque >= 1.00 && cheque < 2.00) {
-            System.out.printf((message) + "%n", cheque, "рубль");
-        } else if (cheque >= 2.00) {
-            System.out.printf((message) + "%n", cheque, "рубля");
+        } else {
+            switch ((int) cheque % 10) {
+                case (1) -> System.out.printf((message) + "%n", cheque, "рубль");
+                case (2), (3), (4) -> System.out.printf((message) + "%n", cheque, "рубля");
+                default -> System.out.printf((message) + "%n", cheque, "рублей");
+            }
         }
     }
 
